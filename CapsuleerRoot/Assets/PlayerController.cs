@@ -3,7 +3,6 @@
 public class PlayerController : Movement
 {
     Attack pa;
-
     Rigidbody rb;
     public LayerMask interactLayers;
 
@@ -71,7 +70,7 @@ public class PlayerController : Movement
 
         if (isGrounded)
         {
-            if (dir.magnitude > 0.1f)
+            if (dir.magnitude > 0.1f && !Input.GetKey(KeyCode.LeftShift))
                 rb.velocity = dir.normalized * actualSpeed; //simple. Move
             else
                 rb.velocity = Vector3.zero; //stay
