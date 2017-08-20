@@ -1,10 +1,9 @@
-﻿using TMPro;
-using UnityEngine;
-
+﻿using UnityEngine;
+using UnityEngine.UI;
 public class WavePanelController : MonoBehaviour
 {
     GameController gc;
-    public TextMeshProUGUI actualWave, actualSubWave, time;
+    public Text actualWave, actualSubWave, time;
     public GameObject startBTN;
     int maxSubWave;
     void Awake()

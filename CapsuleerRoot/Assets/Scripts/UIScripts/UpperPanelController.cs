@@ -1,5 +1,4 @@
-﻿using TMPro;
-using UnityEngine.UI;
+﻿using UnityEngine.UI;
 using UnityEngine;
 
 public class UpperPanelController : MonoBehaviour
@@ -8,7 +7,7 @@ public class UpperPanelController : MonoBehaviour
     public Attack pa;
     GameController gc;
     public Image playerHealth, enemyHealth;
-    public TextMeshProUGUI playerHPStatus, enemyName;
+    public Text playerHPStatus, enemyName;
     public GameObject enemyPanel; //Shows targets HP and name
 
     public GameObject enemytoShow; 

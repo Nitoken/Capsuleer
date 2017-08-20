@@ -20,6 +20,8 @@ public class GameController : MonoBehaviour
     void Awake()
     {
         wave = 0;
+        waving = false;
+        timer = 0;
     }
     public void StartNewWave()
     {
@@ -29,10 +31,22 @@ public class GameController : MonoBehaviour
     }
     void Update()
     {
+        if (isAlive)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+                endPanel.SetActive(endPanel.activeSelf);
+
+            if (!waving)
+                if (Input.GetKeyDown(KeyCode.C))
+                    skillPanel.SetActive(skillPanel.activeSelf);
+        }
+        else if (!finishPanel.activeSelf)
+            finishPanel.SetActive(true);
+
         if(waving)
         {
             timer -= Time.deltaTime;
-
+            
             if (enemiesOnScene.Count <= 0 || timer <= 0)
             {
                 if (subWave < maxSubWave)
@@ -49,11 +63,10 @@ public class GameController : MonoBehaviour
         int toSpawn = wave + subWave;
         while (toSpawn > 0)
         {
-
             GameObject x = Instantiate(enemiesList[Random.Range(0, enemiesList.Length)], enemiesSpawn[Random.Range(0, enemiesSpawn.Length)].position, Quaternion.identity);
-            enemiesOnScene.Add(x);
-            yield return new WaitForSeconds(1f);
-            toSpawn--;
+            enemiesOnScene.Add(x); //Add enemy to enemies on scane. 
+            yield return new WaitForSeconds(1f); //Wait 1s for next spawn
+            toSpawn--; 
         }
     }
 }

@@ -146,6 +146,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f5cc37372baad048a2fe2d4f1a3ca1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 0
+  maxHP: 100
+  actualDef: 0
+  baseDef: 1
+  dieParticle: {fileID: 1466038648799774, guid: 8c8e3176bc661154f822b4317d912acb,
+    type: 2}
+  particleDuration: 2
 --- !u!136 &136741485761703068
 CapsuleCollider:
   m_ObjectHideFlags: 1
