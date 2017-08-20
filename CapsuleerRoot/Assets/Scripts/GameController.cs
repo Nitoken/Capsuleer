@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -15,10 +16,15 @@ public class GameController : MonoBehaviour
     public List<GameObject> enemiesOnScene;
     public Transform[] enemiesSpawn;
 
+    public float maxDistance;
+    public Text distanceTXT;
+    public Transform playerSpawn;
+
     public GameObject selectPanel, skillPanel, endPanel, finishPanel;
 
     void Awake()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         wave = 0;
         waving = false;
         timer = 0;
@@ -33,6 +39,10 @@ public class GameController : MonoBehaviour
     {
         if (isAlive)
         {
+            float dist = Vector3.Distance(player.transform.position, playerSpawn.position);
+            if (dist > maxDistance * 0.7f)
+                distanceTXT.color = new Color(1, 0, 0, dist / maxDistance);
+
             if (Input.GetKeyDown(KeyCode.Escape))
                 endPanel.SetActive(endPanel.activeSelf);
 

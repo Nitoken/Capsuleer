@@ -44,7 +44,8 @@ public class AreaSlowAuraSkill : BaseAuraSkill
         foreach (KeyValuePair<GameObject, float> item in targets)
         {
             GameObject x = item.Key;
-            x.GetComponent<Attack>().actualAttackSpeed += item.Value;
+            if(x != null)
+                x.GetComponent<Attack>().actualAttackSpeed += item.Value;
         }
     }
 }

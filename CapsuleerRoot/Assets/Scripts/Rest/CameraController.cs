@@ -12,14 +12,15 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         faded = new List<GameObject>();
-        offset = target.position - transform.position;
-        target = GameObject.FindGameObjectWithTag("Player").transform;
 
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+        offset = target.position - transform.position;
     }
     void LateUpdate()
     {
         Zoom();
-        FollowTarget();
+        if(target != null)
+            FollowTarget();
         TransparentObject();
 
     }

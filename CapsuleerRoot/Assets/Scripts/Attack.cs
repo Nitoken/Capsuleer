@@ -1,43 +1,52 @@
 ﻿using UnityEngine;
-
+using System.Collections.Generic;
 public class Attack : MonoBehaviour
 {
     public float actualDamage, baseDamage;
     public float actualAttackSpeed, baseAttackSpeed;
-    float attackCoolDown;
     public float actualRange, baseRange;
     public GameObject target;
 
+    public AnimationClip attackClip;
+    public float animDealDamageTime;
+    Animator anim;
+
+
     public virtual void Awake()
     {
+        anim = GetComponent<Animator>();
         actualDamage = baseDamage;
         actualAttackSpeed = baseAttackSpeed;
         actualRange = baseRange;
-        attackCoolDown = 0;
+        AddEvent();
     }
     void Update()
     {
-        if (attackCoolDown > 0)
-            attackCoolDown -= Time.deltaTime;
+        anim.SetFloat("AttackSpeed", actualAttackSpeed);
+    }
 
-        if(target != null)
-        {
-            if (Vector3.Distance(transform.position, target.transform.position) <= actualRange)
-                AttackTarget();
-        }
-    }
-    public virtual void AttackTarget()
+    //Sets time for every selected animation when damage must be done
+    void AddEvent()
     {
-        //If player (SOMEHOW) desn't has health OR attack is not ready there is nothing to do. Back
-        if (!target.GetComponent<Health>() || attackCoolDown > 0)
-            return;
-        else
+        foreach (AnimationClip item in anim.runtimeAnimatorController.animationClips)
         {
-            GetComponent<Renderer>().material.color = Color.red;
-            Vector3 lookDir = new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z); //Look at enemy when attacking!
-            transform.LookAt(lookDir);
-            target.GetComponent<Health>().TakeDamage(actualDamage); //Send some damage!
-            attackCoolDown = actualAttackSpeed; //Take a rest.
+            if (item == attackClip)
+            {
+                if (attackClip.events .Length> 0)
+                    return;
+
+                AnimationEvent aev = new AnimationEvent();
+                aev.functionName = "DealDamage";
+                aev.time = attackClip.length * animDealDamageTime;
+                item.AddEvent(aev);
+            }
+
         }
     }
+    public void DealDamage()
+    {
+        if(target != null)
+            target.GetComponent<Health>().TakeDamage(actualDamage);
+    }
+
 }

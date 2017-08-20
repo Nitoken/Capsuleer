@@ -10,14 +10,16 @@ public class UpperPanelController : MonoBehaviour
     public Text playerHPStatus, enemyName;
     public GameObject enemyPanel; //Shows targets HP and name
 
+
+
     public GameObject enemytoShow; 
     public bool showingByPlayerAttack = false; //If showing actual attacking target then true. 
     void Awake()
     {
         gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        ph = player.GetComponent<Health>();
-        pa = player.GetComponent<Attack>();
+        GameObject playerTemp = GameObject.FindGameObjectWithTag("Player");
+        ph = playerTemp.GetComponent<Health>();
+        pa = playerTemp.GetComponent<Attack>();
     }
     void Update()
     {

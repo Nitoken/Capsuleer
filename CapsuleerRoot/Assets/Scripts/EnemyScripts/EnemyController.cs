@@ -7,16 +7,15 @@ public class EnemyController : Movement
 {
     NavMeshAgent agent;
     public GameObject player;
-    Attack ea;
     UpperPanelController upc;
+    public bool isDead = false;
     public override void Awake()
     {
         base.Awake();
         upc = GameObject.FindGameObjectWithTag("UPC").GetComponent<UpperPanelController>();
-        ea = GetComponent<Attack>();
         player = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
-        ea.target = player;
+        atk.target = player;
     }
     void Update()
     {
@@ -25,16 +24,25 @@ public class EnemyController : Movement
         if (player != null)
         {
             //if too far away then get closer
-            if (Vector3.Distance(transform.position, player.transform.position) > ea.actualRange)
+            if (Vector3.Distance(transform.position, player.transform.position) > atk.actualRange)
             {
+                actualAnimStatus = AnimStatus.move;
                 actualStatus = Status.attack;
                 agent.SetDestination(player.transform.position);
             }
             else
+            {
+                actualAnimStatus = AnimStatus.attack;
                 agent.SetDestination(transform.position); //if close enought stop
+            }
         }
         else
+        {
+            actualAnimStatus = AnimStatus.idle;
             actualStatus = Status.stay;
+        }
+
+        anim.SetInteger("Status", (int)actualAnimStatus);
     }
 
     //For showing actual HP
