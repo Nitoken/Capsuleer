@@ -2,6 +2,8 @@
 
 public class PlayerController : Movement
 {
+    PlayerAttack pa;
+
     Rigidbody rb;
     public LayerMask interactLayers;
 
@@ -9,6 +11,7 @@ public class PlayerController : Movement
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        pa = GetComponent<PlayerAttack>();
     }
 
     void Update()
