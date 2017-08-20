@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Transparent : MonoBehaviour
 {
+    [Tooltip("Choose which shader should be used. Preffer Transparent/Diffuse")]
     public Shader transparentShader;
+    [Tooltip("How much alfa channel should be left")]
     public float transparentValue;
     Dictionary<Material, Shader> shadersInMats;
-
+    Material[] mats;
+    //True when hitted by Camera's raycast
     bool isHitted = false;
     public bool IsHitted
     {
@@ -27,14 +30,15 @@ public class Transparent : MonoBehaviour
 
     void Start()
     {
-        Material[] mats = GetComponent<Renderer>().materials;
+        mats = GetComponent<Renderer>().materials; //Take used materials
         shadersInMats = new Dictionary<Material, Shader>();
+
+        //Every material and its own shader
         for (int i = 0; i < mats.Length; i++)
-        {
             shadersInMats.Add(mats[i], mats[i].shader);
-        }
     }
 
+    //Called when isHitted changes
     void ChangeStatement(bool status)
     {
         if (status)
@@ -45,7 +49,7 @@ public class Transparent : MonoBehaviour
 
     void MakeTransparent()
     {
-        Material[] mats = GetComponent<Renderer>().materials;
+        //Change their shaders to transaprent
         for (int i = 0; i < mats.Length; i++)
         {
             mats[i].shader = transparentShader;
@@ -55,7 +59,7 @@ public class Transparent : MonoBehaviour
 
     void MakeNormal()
     {
-        Material[] mats = GetComponent<Renderer>().materials;
+        //Sets normal shader to every material in object
         for (int i = 0; i < mats.Length; i++)
         {
             foreach(KeyValuePair<Material,Shader> item in shadersInMats)

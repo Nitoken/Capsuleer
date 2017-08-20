@@ -5,7 +5,8 @@ public class Health : MonoBehaviour
     public float hp, maxHP;
     public float actualDef, baseDef;
     public GameObject dieParticle;
-
+    [Tooltip("Die particle duration")]
+    public float particleDuration;
     public virtual void Awake()
     {
         hp = maxHP;
@@ -26,6 +27,8 @@ public class Health : MonoBehaviour
     }
     public virtual void Die()
     {
+        GameObject x = Instantiate(dieParticle, transform.position, dieParticle.transform.rotation);
+        Destroy(x, particleDuration);
         Destroy(gameObject);
     }
 }

@@ -4,6 +4,7 @@ public class PlayerController : Movement
 {
     Attack pa;
     Rigidbody rb;
+    UpperPanelController upc;
     public LayerMask interactLayers;
 
     public bool isGrounded = false;
@@ -13,6 +14,7 @@ public class PlayerController : Movement
         base.Awake();
         rb = GetComponent<Rigidbody>();
         pa = GetComponent<Attack>();
+        upc = GameObject.FindGameObjectWithTag("UPC").GetComponent<UpperPanelController>();
     }
 
     void Update()
@@ -32,6 +34,8 @@ public class PlayerController : Movement
                     case "Enemy":
                         actualStatus = Status.attack;
                         pa.target = hit.collider.gameObject;
+                        upc.showingByPlayerAttack = true; //Is showing actual players target
+                        upc.enemytoShow = pa.target; //Send actual target to show in UI 
                         break;
                 }
             }
@@ -41,7 +45,12 @@ public class PlayerController : Movement
             GetComponent<Renderer>().material.color = Color.white;
             actualStatus = Status.stay;
             if (pa.target != null)
+            {
                 pa.target = null;
+
+                upc.showingByPlayerAttack = false; //No more showin player's target
+                upc.enemytoShow = null; //No target
+            }
         }
     }
     void FixedUpdate()
@@ -59,9 +68,9 @@ public class PlayerController : Movement
         //When player hitted enemy and he is NOT in range then get closer
         if(actualStatus == Status.attack)
         {
-            GetComponent<Renderer>().material.color = Color.yellow;
-            if (Vector3.Distance(transform.position, pa.target.transform.position) > pa.actualRange)
-                Move(pa.target.transform.position);
+            if(pa.target != null)
+                if (Vector3.Distance(transform.position, pa.target.transform.position) > pa.actualRange)
+                    Move(pa.target.transform.position);
         }
     }
     void Move(Vector3 targetPosition)
