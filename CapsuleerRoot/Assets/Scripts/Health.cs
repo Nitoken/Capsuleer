@@ -3,9 +3,14 @@
 public class Health : MonoBehaviour
 {
     public float hp, maxHP;
-    public float actualDef, normalDef;
+    public float actualDef, baseDef;
     public GameObject dieParticle;
 
+    public virtual void Awake()
+    {
+        hp = maxHP;
+        actualDef = baseDef;
+    }
     public void TakeDamage(float damage)
     {
         hp -= damage / actualDef;
