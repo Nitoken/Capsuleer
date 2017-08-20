@@ -24,7 +24,9 @@ public class PlayerController : Movement
                     case "Ground":
                         actualStatus = Status.move;
                         break;
+
                     case "Enemy":
+                        actualStatus = Status.attack;
                         break;
                 }
             }
@@ -64,6 +66,10 @@ public class PlayerController : Movement
                         rb.velocity = fallVector; // just fall
                 }
             }
+        }
+        if(actualStatus == Status.attack)
+        {
+
         }
     }
 
