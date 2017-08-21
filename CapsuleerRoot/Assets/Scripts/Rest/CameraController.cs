@@ -19,15 +19,17 @@ public class CameraController : MonoBehaviour
     void LateUpdate()
     {
         Zoom();
-        if(target != null)
+        if (target != null)
+        {
             FollowTarget();
-        TransparentObject();
+            TransparentObject();
+        }
 
     }
     void Zoom()
     {
         offset.y += Input.GetAxis("Mouse ScrollWheel") * scrollSens;
-        offset.y = Mathf.Clamp(offset.y, minOffset, maxOffset);
+        offset.y = Mathf.Clamp(offset.y, minOffset, maxOffset); //Mo more than max and no less than min
     }
     void FollowTarget()
     {

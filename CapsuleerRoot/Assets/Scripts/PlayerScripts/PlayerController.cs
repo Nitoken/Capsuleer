@@ -109,8 +109,9 @@ public class PlayerController : Movement
     {
         isGrounded = true;
     }
-    void OnTriggerExit()
+    void OnTriggerExit(Collider col)
     {
+        if(col.tag == "Ground")
         isGrounded = false;
     }
 }

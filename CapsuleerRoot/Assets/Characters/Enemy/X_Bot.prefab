@@ -1138,7 +1138,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1131366195038972}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 126.453094, y: 10.001221, z: 134.63365}
+  m_LocalPosition: {x: 123.50555, y: 10.001221, z: 139.72932}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4334868514163194}
@@ -2206,7 +2206,7 @@ MonoBehaviour:
   actualRange: 0
   baseRange: 2
   target: {fileID: 0}
-  attackClip: {fileID: 0}
+  attackClip: {fileID: 7400000, guid: c60934f763b80f14091dab0dfad5debd, type: 3}
   animDealDamageTime: 0.4
 --- !u!136 &136693252168445334
 CapsuleCollider:
