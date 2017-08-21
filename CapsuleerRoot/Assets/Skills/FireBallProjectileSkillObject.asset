@@ -9,21 +9,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ba2f980ddfae9443a140b0173311a84, type: 3}
-  m_Name: GasCloudSkillObject
+  m_Name: FireBallProjectileSkillObject
   m_EditorClassIdentifier: 
-  skillID: 5
-  throwRange: 20
-  icon: {fileID: 21300000, guid: 03830dc189923e649a118924526bac06, type: 3}
-  skillName: Gas cloud
-  skillDesc: Deals damage in time in area
+  skillID: 6
+  throwRange: 0
+  icon: {fileID: 21300000, guid: c14ce4efde1ba6c43a59dbf22bdb3e4f, type: 3}
+  skillName: Fireball
+  skillDesc: Fire projectile. Deals damage when get to target
   level: 1
   status: 0
-  coolDown: 20
+  coolDown: 3
   actualCoolDown: 0
-  skill: {fileID: 1579216760387388, guid: 03d471648294e0742ad49630a9bb3573, type: 2}
+  skill: {fileID: 1620483593278258, guid: 40719d1d179bed94bab1de7c74444095, type: 2}
   parent: {fileID: 0}
   duration: 10
-  basicValue: 2
-  speed: 0
+  basicValue: 10
+  speed: 10
   isThrowable: 1
-  isProjectile: 0
+  isProjectile: 1

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SkillCellController : MonoBehaviour
 {
-    public int skillNumber;
+    public int skillNumber, skillPosition;
     public PlayerSkills ps;
     public SkillObject so;
     GameController gc;
@@ -17,7 +17,14 @@ public class SkillCellController : MonoBehaviour
         foreach (SkillObject item in ps.skills)
             if (item.skillID == skillNumber)
                 so = item;
-
+        for (int i = 0; i < ps.skills.Count; i++)
+        {
+            if (ps.skills[i].skillID == skillNumber)
+            {
+                so = ps.skills[i];
+                skillPosition = i+1;
+            }
+        }
 
         gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         img = transform.GetChild(0).GetComponent<Image>();
@@ -47,21 +54,7 @@ public class SkillCellController : MonoBehaviour
                     status.text = "Cooldown";
                     break;
                 case 1:
-                    switch(skillNumber)
-                    {
-                        case 0:
-                            status.text = "Q";
-                            break;
-                        case 1:
-                            status.text = "W";
-                            break;
-                        case 2:
-                            status.text = "E";
-                            break;
-                        case 3:
-                            status.text = "R";
-                            break;
-                    }
+                    status.text = string.Format("[{0}]", skillPosition);
                     status.color = Color.green;
                     break;
                 case 2:

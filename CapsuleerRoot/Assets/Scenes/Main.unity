@@ -10990,6 +10990,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: aba3fae7db9b4ca4587a9f7e113be4f5, type: 2}
   - {fileID: 11400000, guid: 1acb3d033f4e40544944150552047195, type: 2}
   - {fileID: 11400000, guid: beb5d1f875aceb84dbea318b7bb19753, type: 2}
+  - {fileID: 11400000, guid: a181790fe2ebbb44694818486a3ebcc6, type: 2}
   selectedSkills: []
   player: {fileID: 950591173}
   skillPanel: {fileID: 1125830251}

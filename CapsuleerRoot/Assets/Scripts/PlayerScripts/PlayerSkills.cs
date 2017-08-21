@@ -16,10 +16,16 @@ public class PlayerSkills : Skills
             {
                 //Is it a projectile?
                 if ((selectedSkill as ThrowSkillObject).isProjectile)
-                    (selectedSkill as ThrowSkillObject).ProjectileThrow();
+                {
+                    Vector3 direction = hit.point - transform.position;
+                    direction.y = 0; ;
+                    print(direction.normalized);
+                    (selectedSkill as ThrowSkillObject).ProjectileThrow(direction.normalized);
+                }
                 //if not is target in range?
                 else if (Vector3.Distance(transform.position, hit.point) <= selectedSkill.throwRange)
                     (selectedSkill as ThrowSkillObject).Throw(hit.point); //If code reach that point it should be obvious selected is throwable
+                selectedSkill = null;
             }
         }
 

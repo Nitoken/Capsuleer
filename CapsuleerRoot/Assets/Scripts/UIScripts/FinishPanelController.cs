@@ -6,6 +6,6 @@ public class FinishPanelController : EndpanelController
     void OnEnable()
     {
         int x = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().wave;
-        txt.text = "Survived" + (x - 1) + "waves";
+        txt.text = string.Format("Survived {0} waves", (x + 1));
     }
 }

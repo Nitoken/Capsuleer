@@ -14,22 +14,28 @@ public class ThrowSkillObject : SkillObject
         {
             parent.GetComponent<Skills>().selectedSkill = null;
         }
-        else
+        else if(this.actualCoolDown <=0)
             parent.GetComponent<Skills>().selectedSkill = this;
     }
     public void Throw(Vector3 position)
     {
         GameObject x = Instantiate(skill, position, skill.transform.rotation);
+        x.GetComponent<BaseSkill>().caster = parent.gameObject; //Who is caster?
+        x.GetComponent<BaseSkill>().level = this.level; //Which level?
+        x.GetComponent<BaseSkill>().baseValue = this.basicValue; //How strong is effect?
         Destroy(x, duration);
         SetCoolDown();
     }
     //EveryProjectile
-    public void ProjectileThrow()
+    public void ProjectileThrow(Vector3 direction)
     {
         Vector3 pos = parent.transform.position;
         pos.y++;
         GameObject x = Instantiate(skill, pos, Quaternion.Euler(parent.forward));
-        x.GetComponent<Rigidbody>().velocity = x.transform.forward.normalized * speed;
+        x.GetComponent<BaseSkill>().caster = parent.gameObject; //Who is caster?
+        x.GetComponent<BaseSkill>().level = this.level; //Which level?
+        x.GetComponent<BaseSkill>().baseValue = this.basicValue; //How strong is effect?
+        x.GetComponent<Rigidbody>().velocity = direction * speed;
         Destroy(x, duration);
         SetCoolDown();
     }
