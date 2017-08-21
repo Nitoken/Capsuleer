@@ -1,13 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class AttackAuraSkill : BaseAuraSkill
+﻿public class AttackAuraSkill : BaseSkill
 {
     public override void Start()
     {
-        caster = gameObject.transform.parent.gameObject;
-        valueChange = caster.GetComponent<Attack>().actualDamage + baseValue * level;
+        base.Start();
+        valueChange = caster.GetComponent<Attack>().actualDamage * baseValue;
         caster.GetComponent<Attack>().actualDamage += valueChange;
     }
 

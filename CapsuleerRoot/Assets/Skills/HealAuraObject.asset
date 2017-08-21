@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 444b348c399070642b8a845557794376, type: 3}
+  m_Name: HealAuraObject
+  m_EditorClassIdentifier: 
+  skillID: 3
+  throwRange: 0
+  icon: {fileID: 21300000, guid: bfba11fd60605344bb1d52e3a04350dc, type: 3}
+  skillName: Heal aura
+  skillDesc: Heals immediatly caster
+  level: 1
+  status: 0
+  coolDown: 20
+  actualCoolDown: 0
+  skill: {fileID: 1895972830262690, guid: 4e9ff27d84ae2e5439219c83a704811d, type: 2}
+  parent: {fileID: 0}
+  duration: 1
+  basicValue: 0.1

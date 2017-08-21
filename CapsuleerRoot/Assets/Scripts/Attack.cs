@@ -5,12 +5,13 @@ public class Attack : MonoBehaviour
     public float actualDamage, baseDamage;
     public float actualAttackSpeed, baseAttackSpeed;
     public float actualRange, baseRange;
-    public GameObject target;
+    public GameObject target; //Attack it
 
-    public AnimationClip attackClip;
-    public float animDealDamageTime;
-    Animator anim;
+    public AnimationClip attackClip; //Which script shoud contain event
+    public float animDealDamageTime; //Whean deal damage
+    Animator anim; //To set damage script
 
+    public LayerMask canHurt; //Which targets can be hurt? Used in skill system
 
     public virtual void Awake()
     {

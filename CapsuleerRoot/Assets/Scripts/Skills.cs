@@ -4,43 +4,39 @@ using UnityEngine;
 
 public class Skills : MonoBehaviour
 {
-    public float[] coolDown, baseCoolDown;
-    public int[] skillLevel, skillStatus;
     public enum Status:byte {coolDown = 0, ready = 1, use = 2}
-    public GameObject[] skill;
-    
+    public SkillObject selectedSkill;
+    public List<SkillObject> skills; // Selected by player skills
+
+    public virtual void Awake()
+    {
+        skills = new List<SkillObject>();
+    }
+
+    public virtual void SetupSkills(List<SkillObject> list)
+    {
+        foreach (SkillObject item in list)
+            skills.Add(Instantiate(item)); //Won't affect Rest of scriptableObjects
+        foreach (SkillObject item in skills)
+            item.parent = gameObject.transform; //Whos your daddy?
+    }
+
     public virtual void Update()
     {
-        for(int i = 0; i < coolDown.Length; i++)
+        foreach (SkillObject item in skills)
         {
-            if (coolDown[i] >= 0)
+            if (item.actualCoolDown > 0)
             {
-                coolDown[i] -= Time.deltaTime;
-                if(skillStatus[i] != (int)Status.use)
-                    skillStatus[i] = (int)Status.coolDown;
+                item.actualCoolDown -= Time.deltaTime;
+                item.status = (int)Status.coolDown;
             }
             else
             {
-                if (skillStatus[i] != (int)Status.use)
-                    skillStatus[i] = (int)Status.ready;
+                if (item == selectedSkill)
+                    item.status = (int)Status.use;
+                if(item != selectedSkill)
+                    item.status = (int)Status.ready;
             }
         }
-    }
-
-    public virtual void FirstSkillUse()
-    {
-
-    }
-    public virtual void SecondSkillUse()
-    {
-
-    }
-    public virtual void ThirdSkillUse()
-    {
-
-    }
-    public virtual void FourthSkillUse()
-    {
-
     }
 }

@@ -7,7 +7,7 @@ public class GameController : MonoBehaviour
 {
     public GameObject player; //Player
     public bool isAlive; //Is player alive
-
+    public bool setupDone = false;
     public int wave = 0, subWave = 0, maxSubWave; //Wave info
     public bool waving = false; //is in Wave mode?
     public float timer; //Time between waves

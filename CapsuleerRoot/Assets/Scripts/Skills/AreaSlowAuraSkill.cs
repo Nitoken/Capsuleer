@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(Collider))]
-public class AreaSlowAuraSkill : BaseAuraSkill
+public class AreaSlowAuraSkill : BaseSkill
 {
     Dictionary<GameObject, float> targets;
     public override void Start()
     {
-        targets = new Dictionary<GameObject, float>();
         base.Start();
-        baseValue = baseValue * level;
+        targets = new Dictionary<GameObject, float>();
     }
     void OnTriggerEnter(Collider col)
     {

@@ -8,11 +8,16 @@ public class SkillPanelController : MonoBehaviour
     public GameObject skillCell;
     void Awake()
     {
+
+    }
+    public void Setup()
+    {
         ps = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerSkills>();
-        for (int i = 0; i < ps.skill.Length; i++)
+        for (int i = 0; i < ps.skills.Count; i++)
         {
+            ps.skills[i].level = 1;
             GameObject x = Instantiate(skillCell, transform);
-            x.GetComponent<SkillCellController>().skillNumber = i;
+            x.GetComponent<SkillCellController>().skillNumber = ps.skills[i].skillID;
             x.GetComponent<SkillCellController>().ps = ps;
         }
     }

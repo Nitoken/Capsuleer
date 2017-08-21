@@ -5,6 +5,7 @@ public class SkillCellController : MonoBehaviour
 {
     public int skillNumber;
     public PlayerSkills ps;
+    public SkillObject so;
     GameController gc;
     Image img;
     Text status;
@@ -13,18 +14,32 @@ public class SkillCellController : MonoBehaviour
 
     void Start ()
     {
+        foreach (SkillObject item in ps.skills)
+            if (item.skillID == skillNumber)
+                so = item;
+
+
         gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         img = transform.GetChild(0).GetComponent<Image>();
         status = transform.GetChild(1).GetComponent<Text>();
         bar = transform.GetChild(2).GetComponent<Image>();
-        img.sprite = ps.skillIcon[skillNumber];
+
+        img.sprite = so.icon;
     }
 
 	void Update ()
     {
         if(gc.isAlive)
         {
-            stat = ps.skillStatus[skillNumber];
+            foreach(SkillObject item in ps.skills)
+            {
+                if(item == so)
+                {
+                    stat = item.status;
+                    bar.fillAmount = item.actualCoolDown / item.coolDown;
+                }
+            }
+
             switch(stat)
             {
                 case 0:
@@ -54,7 +69,7 @@ public class SkillCellController : MonoBehaviour
                     break;
             }
 
-            bar.fillAmount = ps.coolDown[skillNumber] / ps.baseCoolDown[skillNumber];
+
         }
 	}
 }

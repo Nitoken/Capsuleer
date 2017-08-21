@@ -1,10 +1,8 @@
-﻿
-
-public class HealAuraSkill : BaseAuraSkill
+﻿public class HealAuraSkill : BaseSkill
 {
-    public override void Start()
+    public override  void Start()
     {
         base.Start();
-        caster.GetComponent<Health>().Heal(baseValue * level * caster.GetComponent<Health>().maxHP);
+        caster.GetComponent<Health>().Heal(baseValue * caster.GetComponent<Health>().maxHP);
     }
 }

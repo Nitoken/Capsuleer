@@ -1,9 +1,9 @@
-﻿public class DefenceAuraSkill : BaseAuraSkill
+﻿public class DefenceAuraSkill : BaseSkill
 {
     public override void Start()
     {
         base.Start();
-        valueChange = caster.GetComponent<Health>().actualDef * baseValue * level;
+        valueChange = caster.GetComponent<Health>().actualDef * baseValue;
         caster.GetComponent<Health>().actualDef += valueChange;
     }
 
