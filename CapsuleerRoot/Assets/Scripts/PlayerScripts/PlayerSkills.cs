@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 public class PlayerSkills : Skills
 {
-    public int maxSkill = 0;
+    public int maxSkill = 0; // just to know how many time iterate. Got this from Setup script
     public override void Update()
     {
-        base.Update();
+        base.Update(); // Mainly cooldown skills 
 
         if(selectedSkill != null && Input.GetButtonDown("RightMouse"))
         {
@@ -23,6 +23,7 @@ public class PlayerSkills : Skills
             }
         }
 
+        //Any key pressed?
         for(int i = 1; i <= maxSkill; i ++)
         {
             if (Input.GetButtonDown(i.ToString()))

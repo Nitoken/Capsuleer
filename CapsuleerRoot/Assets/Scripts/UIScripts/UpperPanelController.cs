@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class UpperPanelController : MonoBehaviour
 {
-    public Health ph;
-    public Attack pa;
+    public PlayerHealth ph; 
+    public PlayerAttack pa; 
     GameController gc;
     public Image playerHealth, enemyHealth;
     public Text playerHPStatus, enemyName;
@@ -12,17 +12,18 @@ public class UpperPanelController : MonoBehaviour
 
 
 
-    public GameObject enemytoShow; 
+    public GameObject enemytoShow;  //Show that object
     public bool showingByPlayerAttack = false; //If showing actual attacking target then true. 
     void Awake()
     {
         gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         GameObject playerTemp = GameObject.FindGameObjectWithTag("Player");
-        ph = playerTemp.GetComponent<Health>();
-        pa = playerTemp.GetComponent<Attack>();
+        ph = playerTemp.GetComponent<PlayerHealth>();
+        pa = playerTemp.GetComponent<PlayerAttack>();
     }
     void Update()
     {
+        //when player alive
         if (gc.isAlive)
         {
             playerHealth.fillAmount = ph.hp / ph.maxHP;
@@ -31,8 +32,10 @@ public class UpperPanelController : MonoBehaviour
         else
         {
             playerHPStatus.text = "Dead";
+            playerHealth.fillAmount = 0f;
         }
 
+        //Shows enemy name and health
         if (enemytoShow != null)
         {
             enemyPanel.SetActive(true);

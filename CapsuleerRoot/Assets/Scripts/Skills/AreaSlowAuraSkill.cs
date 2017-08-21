@@ -9,8 +9,10 @@ public class AreaSlowAuraSkill : BaseSkill
         base.Start();
         targets = new Dictionary<GameObject, float>();
     }
+    // Check if GameObject is in dictionary, if not -> Save gameobject, slow him
     void OnTriggerEnter(Collider col)
     {
+        //Don't slow caster, lol!
         if (col.gameObject == caster)
             return;
 
@@ -24,6 +26,7 @@ public class AreaSlowAuraSkill : BaseSkill
             }
         }
     }
+    //Find in dictionary, give back speed and remove
     void OnTriggerExit(Collider col)
     {
         if (targets.ContainsKey(col.gameObject))
@@ -38,6 +41,7 @@ public class AreaSlowAuraSkill : BaseSkill
             }
         }
     }
+    //Back all values to their owners when die
     void OnDestroy()
     {
         foreach (KeyValuePair<GameObject, float> item in targets)

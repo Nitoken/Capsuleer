@@ -2208,6 +2208,9 @@ MonoBehaviour:
   target: {fileID: 0}
   attackClip: {fileID: 7400000, guid: c60934f763b80f14091dab0dfad5debd, type: 3}
   animDealDamageTime: 0.4
+  canHurt:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!136 &136693252168445334
 CapsuleCollider:
   m_ObjectHideFlags: 1
